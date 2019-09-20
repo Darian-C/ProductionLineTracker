@@ -6,7 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 public class Controller {
-
+//How do i print to the screen after the button in the Product Line tab
+//called Add Product is clicked.
     @FXML
     private Button btnClick;
 
