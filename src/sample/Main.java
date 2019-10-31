@@ -9,7 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-/**
+import java.util.Date;
+
+/** Allows user to add products to a table/chart.
  * @author Darian Colon
  */
 public class Main extends Application {

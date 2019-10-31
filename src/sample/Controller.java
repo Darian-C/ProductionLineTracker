@@ -2,15 +2,19 @@ package sample;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+
 
 import java.awt.*;
 import java.net.URL;
@@ -26,11 +30,11 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     /**
      * @param Controller
-     *JDBC = Java Database Connectivity
+     * JDBC = Java Database Connectivity
      * Import Package -> Load and Register JDBC Driver ->
      * Establish Connection -> Create Statement -> Execute Query ->
      * Process Result -> Close
-     * */
+     */
 
     @FXML
     private URL url;
@@ -51,24 +55,40 @@ public class Controller implements Initializable {
     private TextField Manu;
 
     @FXML
+    private TableView<Product> Table;
+
+    @FXML
+    private TableColumn<?, ?> nameT;
+
+    @FXML
+    private TableColumn<?, ?> manuT;
+
+    @FXML
+    private TableColumn<?, ?> typeT;
+
+    @FXML
     private ChoiceBox<String> Choices;
 
     @FXML
     private ComboBox<String> Combo;
 
-    /**The Above code uses the FXML names for combo box,
-     *  choice box, buttons, etc.
+    @FXML
+    private TextArea prodLog;
+
+    /**
+     * The Above code uses the FXML names for combo box,
+     * choice box, buttons, etc.
      *
-     * @param event
-     * The code below Connects to the database,
-     * gives an action to the FXML objects,
-     * and allows the user interact with the program.
+     * @param event The code below Connects to the database,
+     *              gives an action to the FXML objects,
+     *              and allows the user interact with the program.
      */
-
-
 
     @FXML
     public void display(ActionEvent event) {
+        String Prod = toString();
+        prodLog.appendText(Prod);
+
         String pT = Choices.getValue();
         String pM = Manu.getText();
         String pN = Name.getText();
@@ -98,16 +118,16 @@ public class Controller implements Initializable {
             stmt = connect.createStatement();
 
             //STEP 4:Insert info to table
-            String sql0 =("INSERT INTO Product" + "(Name, Type, Manufacturer)" + "VALUES (?, ?, ?)");
+            String sql0 = ("INSERT INTO Product" + "(Name, Type, Manufacturer)" + "VALUES (?, ?, ?)");
             PreparedStatement preparedItem = connect.prepareStatement(sql0);
             preparedItem.setString(1, pN);
             preparedItem.setString(2, pT);
             preparedItem.setString(3, pM);
             preparedItem.executeUpdate();
-            String sqlviewp ="select * From product";
+            String sqlviewp = "select * From product";
             ResultSet rs = stmt.executeQuery(sqlviewp);
-            while(rs.next()){
-                String Name = rs.getString( "Name");
+            while (rs.next()) {
+                String Name = rs.getString("Name");
                 String Type = rs.getString("Type");
                 String Manufacturer = rs.getString("Manufacturer");
                 System.out.println(Name + Type + Manufacturer);
@@ -127,15 +147,14 @@ public class Controller implements Initializable {
     }
 
     //ChoiceBox population
-    void btnClick(ActionEvent event){System.out.println("Inserted new information.");}
+    void btnClick(ActionEvent event) {
+        System.out.println("Inserted new information.");
+    }
 
     /**
-     *
      * @param location
-     * @param resources
-     * The below code populates combo box with values 1-10.
-     *Allows user to enter values into the combo box.
-     *
+     * @param resources The below code populates combo box with values 1-10.
+     *                  Allows user to enter values into the combo box.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -144,7 +163,16 @@ public class Controller implements Initializable {
         Combo.getSelectionModel().selectFirst();
         Choices.getItems().addAll("Audio", "Visual", "AudioMobile", "VisualMobile");
 
-            }
+        ObservableList<Product> productLine = FXCollections.observableArrayList();
+        nameT.setCellValueFactory(new PropertyValueFactory("name"));
+        manuT.setCellValueFactory(new PropertyValueFactory("manufacturer"));
+        typeT.setCellValueFactory(new PropertyValueFactory("type"));
+        Table.setItems(productLine);
+
+        productLine.addAll();
+
+    }
+
 
 }
 
