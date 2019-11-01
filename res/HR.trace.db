@@ -1,0 +1,54 @@
+2019-10-02 18:57:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "REGISTRATION" not found; SQL statement:
+INSERT INTO Registration VALUES (100, 'Zara', 'Ali', 18) [42102-199]
+2019-10-04 09:03:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 09:04:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 09:06:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 09:19:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 10:32:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 10:32:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 10:34:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 10:52:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 10:55:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 11:04:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 11:07:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 11:14:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 11:17:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 11:18:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+INSERT INTO Product(type, manufacturer, name)VALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 11:26:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCTVALUES" not found; SQL statement:
+INSERT INTO ProductVALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-04 11:32:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCTVALUES" not found; SQL statement:
+INSERT INTO ProductVALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
+2019-10-05 14:55:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCTVALUES" not found; SQL statement:
+INSERT INTO ProductVALUES ('AUDIO', 'Apple', 'iPod') [42102-199]
