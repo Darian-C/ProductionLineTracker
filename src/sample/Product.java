@@ -3,19 +3,21 @@ package sample;
 abstract class Product implements Item {
     //Fields
     int id;
-    String type;
+    ItemType type;
     String name;
     String manufacturer;
 
 
-    public Product(String name, String manufacturer, String type){
+    public Product(String name, String manufacturer, ItemType type){
         this.id = id;
+        this.type = type;
+    }
+
+    public Product(String name, String manufacturer) {
         this.manufacturer = manufacturer;
         this.name = name;
-        this.type = type;
         setManufacturer(manufacturer);
         setName(name);
-        setType(type);
     }
 
     public int getId(){
@@ -23,9 +25,9 @@ abstract class Product implements Item {
     }
 
 
-    public void setType(String type){this.type = type;}
+    public void setType(ItemType type){this.type = type;}
 
-    public String getType(){
+    public ItemType getType(){
         return this.type;
     }
 
