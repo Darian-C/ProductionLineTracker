@@ -1,10 +1,19 @@
 package sample;
 
+/**
+ * @author Darian Colon
+ */
 public class Screen implements ScreenSpec {
     protected String resolution;
     protected int refreshRate;
     protected int responseTime;
 
+    /**
+     *
+     * @param resolution
+     * @param refreshRate
+     * @param responseTime
+     */
     public Screen(String resolution, int refreshRate, int responseTime) {
         this.resolution = resolution;
         this.refreshRate = refreshRate;
@@ -26,10 +35,14 @@ public class Screen implements ScreenSpec {
         return responseTime;
     }
 
+    /**
+     *
+     * @return
+     */
     public String toString() {
         return "Resolution: " + resolution + "\n" +
                 "Refresh Rate: " + refreshRate + "\n" +
-                "Response Time: " + responseTime ;
+                "Response Time: " + responseTime;
     }
 }
 

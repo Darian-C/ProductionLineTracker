@@ -2,10 +2,21 @@ package sample;
 
 import java.util.ArrayList;
 
+/**
+ * @author Darian Colon
+ */
 public class MoviePlayer extends Product implements MultimediaControl {
     private MonitorType monitorType;
     private Screen screen;
     protected ItemType mediaType;
+
+    /**
+     *
+     * @param name
+     * @param manufacturer
+     * @param screen
+     * @param t
+     */
 
     public MoviePlayer(String name, String manufacturer, Screen screen, MonitorType t) {
         super(name, manufacturer);
@@ -22,7 +33,7 @@ public class MoviePlayer extends Product implements MultimediaControl {
     }
 
     @Override
-    public void play(){
+    public void play() {
         System.out.println("Playing");
     }
 
@@ -41,8 +52,12 @@ public class MoviePlayer extends Product implements MultimediaControl {
         System.out.println("Next");
     }
 
+    /**
+     *
+     * @return
+     */
     public String toString() {
-        return super.toString() +"\n" + screen.toString() + "\n" +
+        return super.toString() + "\n" + screen.toString() + "\n" +
                 "Monitor Type: " + monitorType;
     }
 

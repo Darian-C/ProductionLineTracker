@@ -2,25 +2,39 @@ package sample;
 
 import java.util.Date;
 
+/**
+ * @author Darian Colon
+ */
 public class ProductionRecord {
     private int productionNumber;
     private int productID;
     private String serialNumber;
     Date dateProduced = new Date();
 
-    ProductionRecord(int pNum){
+    ProductionRecord(int pNum) {
         this.productionNumber = pNum;
         this.productID = 0;
         this.serialNumber = "0";
         this.dateProduced = new Date();
     }
-
-    ProductionRecord(int pNum, int pID, String sNum, Date dateProduced){
+    /**
+     *
+     * @param pNum
+     * @param pID
+     * @param sNum
+     * @param dateProduced
+     */
+    ProductionRecord(int pNum, int pID, String sNum, Date dateProduced) {
         this.productionNumber = pNum;
         this.productID = pID;
         this.serialNumber = sNum;
         this.dateProduced = dateProduced;
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Prod. Num: " + productionNumber
@@ -28,37 +42,42 @@ public class ProductionRecord {
                 + serialNumber + " Date: " + dateProduced;
     }
 
-
-    public void setProductionNumber(int pNum){
+    public void setProductionNumber(int pNum) {
 
         this.productionNumber = pNum;
     }
-    public void setProductID(int pID){
+
+    public void setProductID(int pID) {
 
         this.productID = pID;
     }
-    public void setSerialNumber(String sNum){
+
+    public void setSerialNumber(String sNum) {
 
         this.serialNumber = sNum;
     }
-    public void setProdDate(Date dateProduced){
+
+    public void setProdDate(Date dateProduced) {
 
         this.dateProduced = dateProduced;
     }
 
-    public int getProductionNumber(){
+    public int getProductionNumber() {
 
         return this.productionNumber;
     }
-    public int getProductID(){
+
+    public int getProductID() {
 
         return this.productID;
     }
-    public String getSerialNumber(){
+
+    public String getSerialNumber() {
 
         return this.serialNumber;
     }
-    public Date getProdDate(){
+
+    public Date getProdDate() {
 
         return dateProduced;
     }

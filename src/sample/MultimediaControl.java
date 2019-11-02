@@ -2,13 +2,16 @@ package sample;
 
 import java.util.ArrayList;
 
+/**
+ * @author Darian Colon
+ */
 public interface MultimediaControl {
     public void play();
     public void stop();
     public void previous();
     public void next();
 
-    //--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 // GUI: Below is a driver that will demonstrate that any class that implements the
 // MultimediaControl Interface would be able to be instantiated and use its methods
 // used no matter if it was an audio or movie player.

@@ -1,4 +1,5 @@
 package sample;
+
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,9 +23,9 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 
-
-
-/** Structure of the program and storage data.
+/**
+ * Structure of the program and storage data.
+ *
  * @author Darian Colon
  */
 public class Controller implements Initializable {
@@ -77,13 +78,12 @@ public class Controller implements Initializable {
 
     /**
      * The Above code uses the FXML names for combo box,
-     * choice box, buttons, etc.
+     * choice box, buttons, TableView, etc.
      *
      * @param event The code below Connects to the database,
      *              gives an action to the FXML objects,
      *              and allows the user interact with the program.
      */
-
     @FXML
     public void display(ActionEvent event) {
         String Prod = toString();
@@ -151,6 +151,8 @@ public class Controller implements Initializable {
         System.out.println("Inserted new information.");
     }
 
+    ObservableList<Product> productLine = FXCollections.observableArrayList();
+
     /**
      * @param location
      * @param resources The below code populates combo box with values 1-10.
@@ -163,7 +165,6 @@ public class Controller implements Initializable {
         Combo.getSelectionModel().selectFirst();
         Choices.getItems().addAll("Audio", "Visual", "AudioMobile", "VisualMobile");
 
-        ObservableList<Product> productLine = FXCollections.observableArrayList();
         nameT.setCellValueFactory(new PropertyValueFactory("name"));
         manuT.setCellValueFactory(new PropertyValueFactory("manufacturer"));
         typeT.setCellValueFactory(new PropertyValueFactory("type"));

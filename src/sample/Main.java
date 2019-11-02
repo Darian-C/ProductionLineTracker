@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/** Allows user to add products to a table/chart.
+/**
  * @author Darian Colon
  */
 public class Main extends Application {

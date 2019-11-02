@@ -1,5 +1,8 @@
 package sample;
 
+/**
+ * @author Darian Colon
+ */
 abstract class Product implements Item {
     //Fields
     int id;
@@ -7,8 +10,13 @@ abstract class Product implements Item {
     String name;
     String manufacturer;
 
-
-    public Product(String name, String manufacturer, ItemType type){
+    /**
+     *
+     * @param name
+     * @param manufacturer
+     * @param type
+     */
+    public Product(String name, String manufacturer, ItemType type) {
         this.id = id;
         this.type = type;
     }
@@ -20,35 +28,44 @@ abstract class Product implements Item {
         setName(name);
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
+    public void setType(ItemType type) {
+        this.type = type;
+    }
 
-    public void setType(ItemType type){this.type = type;}
-
-    public ItemType getType(){
+    public ItemType getType() {
         return this.type;
     }
 
     @Override
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
     @Override
-    public void setManufacturer(String manufacturer){this.manufacturer = manufacturer;}
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
 
     @Override
-    public String getManufacturer(){return this.manufacturer;}
+    public String getManufacturer() {
+        return this.manufacturer;
+    }
 
+    /**
+     *
+     * @return
+     */
     @Override
-    public String toString(){
+    public String toString() {
         String s = "ID: " + id + "Name: " + name + "\n" +
                 "Manufacturer: " + manufacturer + "\n" + "Type: " + type;
         return s;

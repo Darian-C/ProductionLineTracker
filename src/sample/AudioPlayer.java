@@ -1,18 +1,29 @@
 package sample;
 
+/** Allows user to add new products to a table/chart.
+ * @author Darian Colon
+ */
 public class AudioPlayer extends Product implements MultimediaControl {
     protected String supportedAudioFormats;
     protected String supportedPlaylistFormats;
     protected ItemType mediaType;
 
-    public AudioPlayer(String name, String manufacturer, String Audio, String Playlist){
+    /**
+     *
+     * @param name is the name of the product that is being added to the program(TableView)
+     * @param manufacturer is the brand of the product (who makes it)
+     * @param Audio
+     * @param Playlist
+     */
+    public AudioPlayer(String name, String manufacturer, String Audio, String Playlist) {
         super(name, manufacturer);
         supportedAudioFormats = Audio;
         supportedPlaylistFormats = Playlist;
         mediaType = ItemType.AUDIO;
     }
+
     @Override
-    public void play(){
+    public void play() {
         System.out.println("Playing");
     }
 
@@ -31,9 +42,13 @@ public class AudioPlayer extends Product implements MultimediaControl {
         System.out.println("Next");
     }
 
-    public String toString(){
-       String s = super.toString()+ "\n";
-               s += "Audio Formats: " + "Playlist Formats: " + "Type: " + mediaType;
-       return s;
+    /**
+     * s returns the toString
+     * @return
+     */
+    public String toString() {
+        String s = super.toString() + "\n";
+        s += "Audio Formats: " + "Playlist Formats: " + "Type: " + mediaType;
+        return s;
     }
 }
