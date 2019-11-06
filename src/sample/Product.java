@@ -10,6 +10,9 @@ abstract class Product implements Item {
     String name;
     String manufacturer;
 
+
+
+
     /**
      *
      * @param name

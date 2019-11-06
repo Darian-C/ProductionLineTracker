@@ -43,6 +43,9 @@ public class Controller implements Initializable {
     private ResourceBundle resources;
 
     @FXML
+    private ListView<Product> lvProducts;
+
+    @FXML
     private Button btnAddProduct;
 
     @FXML
@@ -142,7 +145,13 @@ public class Controller implements Initializable {
 
     }
 
-    //ChoiceBox population
+    /** The below code takes the name, manufacturer, and ItemType
+     *  from the choice box that the user inputs and adds it to the
+     *  tableview on the product tab
+     *
+     * @param event
+     */
+
     @FXML
     void addProduct(ActionEvent event) {
         Product p = new Widget(Name.getText(), Manu.getText(), Choices.getValue());
@@ -168,6 +177,7 @@ public class Controller implements Initializable {
         typeT.setCellValueFactory(new PropertyValueFactory("type"));
         Table.setItems(productLine);
 
+        lvProducts.setItems(productLine);
     }
 
 
