@@ -19,13 +19,14 @@ abstract class Product implements Item {
     public Product(String name, String manufacturer, ItemType type) {
         this.id = id;
         this.type = type;
+        this.name = name;
+        this.manufacturer = manufacturer;
     }
 
     public Product(String name, String manufacturer) {
         this.manufacturer = manufacturer;
         this.name = name;
-        setManufacturer(manufacturer);
-        setName(name);
+
     }
 
     public int getId() {
@@ -59,6 +60,7 @@ abstract class Product implements Item {
     public String getManufacturer() {
         return this.manufacturer;
     }
+
 
     /**
      *

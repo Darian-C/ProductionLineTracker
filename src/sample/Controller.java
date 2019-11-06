@@ -1,5 +1,6 @@
 package sample;
 
+import apple.laf.JRSUIConstants;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -16,8 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
-
-import java.awt.*;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -36,7 +35,7 @@ public class Controller implements Initializable {
      * Establish Connection -> Create Statement -> Execute Query ->
      * Process Result -> Close
      */
-
+    ObservableList<Product> productLine;
     @FXML
     private URL url;
 
@@ -44,7 +43,7 @@ public class Controller implements Initializable {
     private ResourceBundle resources;
 
     @FXML
-    private Button btnClick;
+    private Button btnAddProduct;
 
     @FXML
     private Text outputText;
@@ -68,7 +67,7 @@ public class Controller implements Initializable {
     private TableColumn<?, ?> typeT;
 
     @FXML
-    private ChoiceBox<String> Choices;
+    private ChoiceBox<ItemType> Choices;
 
     @FXML
     private ComboBox<String> Combo;
@@ -80,16 +79,13 @@ public class Controller implements Initializable {
      * The Above code uses the FXML names for combo box,
      * choice box, buttons, TableView, etc.
      *
-     * @param event The code below Connects to the database,
-     *              gives an action to the FXML objects,
-     *              and allows the user interact with the program.
      */
     @FXML
-    public void display(ActionEvent event) {
+    public void display() {
         String Prod = toString();
         prodLog.appendText(Prod);
 
-        String pT = Choices.getValue();
+        ItemType pT = Choices.getValue();
         String pM = Manu.getText();
         String pN = Name.getText();
 
@@ -121,7 +117,7 @@ public class Controller implements Initializable {
             String sql0 = ("INSERT INTO Product" + "(Name, Type, Manufacturer)" + "VALUES (?, ?, ?)");
             PreparedStatement preparedItem = connect.prepareStatement(sql0);
             preparedItem.setString(1, pN);
-            preparedItem.setString(2, pT);
+            preparedItem.setString(2, pT.code);
             preparedItem.setString(3, pM);
             preparedItem.executeUpdate();
             String sqlviewp = "select * From product";
@@ -147,11 +143,12 @@ public class Controller implements Initializable {
     }
 
     //ChoiceBox population
-    void btnClick(ActionEvent event) {
-        System.out.println("Inserted new information.");
+    @FXML
+    void addProduct(ActionEvent event) {
+        Product p = new Widget(Name.getText(), Manu.getText(), Choices.getValue());
+        productLine.add(p);
     }
 
-    ObservableList<Product> productLine = FXCollections.observableArrayList();
 
     /**
      * @param location
@@ -163,14 +160,13 @@ public class Controller implements Initializable {
         Combo.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
         Combo.setEditable(true);
         Combo.getSelectionModel().selectFirst();
-        Choices.getItems().addAll("Audio", "Visual", "AudioMobile", "VisualMobile");
+        Choices.getItems().addAll(ItemType.values());
 
+        productLine = FXCollections.observableArrayList();
         nameT.setCellValueFactory(new PropertyValueFactory("name"));
         manuT.setCellValueFactory(new PropertyValueFactory("manufacturer"));
         typeT.setCellValueFactory(new PropertyValueFactory("type"));
         Table.setItems(productLine);
-
-        productLine.addAll();
 
     }
 

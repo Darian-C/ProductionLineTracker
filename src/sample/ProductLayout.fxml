@@ -59,7 +59,7 @@
                               <ChoiceBox fx:id="Choices" prefHeight="24.0" prefWidth="307.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
-                        <Button fx:id="btnClicked" layoutX="362.0" layoutY="55.0" mnemonicParsing="false" onAction="#display" text="Add Product" />
+                        <Button fx:id="btnAddProduct" layoutX="362.0" layoutY="55.0" mnemonicParsing="false" onAction="#addProduct" text="Add Product" />
                         <Label layoutX="317.0" layoutY="136.0" prefHeight="25.0" prefWidth="58.0" text="Products" />
                         <TableView fx:id="Table" layoutX="147.0" layoutY="159.0" prefHeight="200.0" prefWidth="398.0">
                           <columns>
