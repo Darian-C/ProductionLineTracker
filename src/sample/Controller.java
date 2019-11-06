@@ -76,6 +76,9 @@ public class Controller implements Initializable {
     private ComboBox<String> Combo;
 
     @FXML
+    private Button btnRecordProduct;
+
+    @FXML
     private TextArea prodLog;
 
     /**
@@ -158,6 +161,11 @@ public class Controller implements Initializable {
         productLine.add(p);
     }
 
+    @FXML
+    void recordProduct(ActionEvent event){
+        prodLog.appendText(String.valueOf(productLine));
+    }
+
 
     /**
      * @param location
@@ -169,6 +177,7 @@ public class Controller implements Initializable {
         Combo.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
         Combo.setEditable(true);
         Combo.getSelectionModel().selectFirst();
+
         Choices.getItems().addAll(ItemType.values());
 
         productLine = FXCollections.observableArrayList();
