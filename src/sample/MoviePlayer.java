@@ -11,7 +11,6 @@ public class MoviePlayer extends Product implements MultimediaControl {
     protected ItemType mediaType;
 
     /**
-     *
      * @param name
      * @param manufacturer
      * @param screen
@@ -53,7 +52,6 @@ public class MoviePlayer extends Product implements MultimediaControl {
     }
 
     /**
-     *
      * @return
      */
     public String toString() {

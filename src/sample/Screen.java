@@ -9,7 +9,6 @@ public class Screen implements ScreenSpec {
     protected int responseTime;
 
     /**
-     *
      * @param resolution
      * @param refreshRate
      * @param responseTime
@@ -36,7 +35,6 @@ public class Screen implements ScreenSpec {
     }
 
     /**
-     *
      * @return
      */
     public String toString() {

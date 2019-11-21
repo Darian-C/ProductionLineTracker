@@ -5,7 +5,6 @@ package sample;
  */
 public interface ScreenSpec {
     /**
-     *
      * @return
      */
     public String getResolution();

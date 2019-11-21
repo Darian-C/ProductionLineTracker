@@ -1,6 +1,7 @@
 package sample;
 
-import apple.laf.JRSUIConstants;
+//import apple.laf.JRSUIConstants;
+
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,14 +18,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
+import java.io.FileInputStream;
 import java.net.URL;
 import java.sql.*;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 
 /**
- * Structure of the program and storage data.
- *
+ * This is where all th control for the actions between
+ *the user and the program are located. Also stores data to the data babse.
  * @author Darian Colon
  */
 public class Controller implements Initializable {
@@ -84,10 +87,8 @@ public class Controller implements Initializable {
     /**
      * The Above code uses the FXML names for combo box,
      * choice box, buttons, TableView, etc.
-     *
      */
-    @FXML
-    public void display() {
+    public void initializeDB() {
         String Prod = toString();
         prodLog.appendText(Prod);
 
@@ -95,62 +96,67 @@ public class Controller implements Initializable {
         String pM = Manu.getText();
         String pN = Name.getText();
 
-
-        // JDBC driver name and database URL
-        final String JDBC_DRIVER = "org.h2.Driver";
-        final String DB_URL = "jdbc:h2:./res/H2";
-
-        final String USER = "";
-        final String PASS = "";
-
-        Connection connect = null;
-        Statement stmt = null;
-
         try {
-            // STEP 1: Register JDBC driver
-            Class.forName(JDBC_DRIVER);
+            // JDBC driver name and database URL
+            final String JDBC_DRIVER = "org.h2.Driver";
+            final String DB_URL = "jdbc:h2:./res/H2";
 
-            //STEP 2: Open a connection to database
-            System.out.println("Connecting to database....");
-            connect = DriverManager.getConnection(DB_URL, USER, PASS);
-            System.out.println("Connected!");
+            Properties prop = new Properties();
+            prop.load(new FileInputStream("res/properties"));
 
-            //STEP 3:Statements/Prepared Statement/Calloble Statement
-            System.out.println("Inserting...");
-            stmt = connect.createStatement();
+            final String USER = "";
+            final String PASS = prop.getProperty("password");
 
-            //STEP 4:Insert info to table
-            String sql0 = ("INSERT INTO Product" + "(Name, Type, Manufacturer)" + "VALUES (?, ?, ?)");
-            PreparedStatement preparedItem = connect.prepareStatement(sql0);
-            preparedItem.setString(1, pN);
-            preparedItem.setString(2, pT.code);
-            preparedItem.setString(3, pM);
-            preparedItem.executeUpdate();
-            String sqlviewp = "select * From product";
-            ResultSet rs = stmt.executeQuery(sqlviewp);
-            while (rs.next()) {
-                String Name = rs.getString("Name");
-                String Type = rs.getString("Type");
-                String Manufacturer = rs.getString("Manufacturer");
-                System.out.println(Name + Type + Manufacturer);
+            Connection connect = null;
+            Statement stmt = null;
+
+            try {
+                // STEP 1: Register JDBC driver
+                Class.forName(JDBC_DRIVER);
+
+                //STEP 2: Open a connection to database
+                System.out.println("Connecting to database....");
+                connect = DriverManager.getConnection(DB_URL, USER, PASS);
+                System.out.println("Connected!");
+
+                //STEP 3:Statements/Prepared Statement/Calloble Statement
+                System.out.println("Inserting...");
+                stmt = connect.createStatement();
+
+                //STEP 4:Insert info to table
+                String sql0 = ("INSERT INTO Product" + "(Name, Type, Manufacturer)" + "VALUES (?, ?, ?)");
+                PreparedStatement preparedItem = connect.prepareStatement(sql0);
+                preparedItem.setString(1, pN);
+                preparedItem.setString(2, pT.code);
+                preparedItem.setString(3, pM);
+                preparedItem.executeUpdate();
+                String sqlviewp = "select * From product";
+                ResultSet rs = stmt.executeQuery(sqlviewp);
+                while (rs.next()) {
+                    String Name = rs.getString("Name");
+                    String Type = rs.getString("Type");
+                    String Manufacturer = rs.getString("Manufacturer");
+                    System.out.println(Name + Type + Manufacturer);
+                }
+
+                //STEP 5: close
+                //preparedItem.close();
+                stmt.close();
+                connect.close();
+
+
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
             }
-
-            //STEP 5: close
-            //preparedItem.close();
-            stmt.close();
-            connect.close();
-
-
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
-    /** The below code takes the name, manufacturer, and ItemType
-     *  from the choice box that the user inputs and adds it to the
-     *  tableview on the product tab
+    /**
+     * The below code takes the name, manufacturer, and ItemType
+     * from the choice box that the user inputs and adds it to the
+     * tableview on the product tab
      *
      * @param event
      */
@@ -162,7 +168,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void recordProduct(ActionEvent event){
+    void recordProduct(ActionEvent event) {
         prodLog.appendText(String.valueOf(productLine));
     }
 

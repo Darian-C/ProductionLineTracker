@@ -11,10 +11,7 @@ abstract class Product implements Item {
     String manufacturer;
 
 
-
-
     /**
-     *
      * @param name
      * @param manufacturer
      * @param type
@@ -66,7 +63,6 @@ abstract class Product implements Item {
 
 
     /**
-     *
      * @return
      */
     @Override

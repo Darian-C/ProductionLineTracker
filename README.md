@@ -1,4 +1,77 @@
-# ProductionLineTracker
-This program keeps track of the products produced by a media player production facility.
-9/20/19
-Issues: Connecting an action to the buttons after they are clicked by the user.
+# Production Line 
+
+This very special java program was created by Darian Colon from Aug 19,2019 to Dec 09, 2019. It is designed to allow the user 
+to add certain product to a database to be recorded for later use. This program was a project for a college junior level
+course at Florida Gulf Coast University. The purpose of this project is to help students develop a proficiency by 
+creating a program that is function while using java topics taught during the course.<br />
+
+
+## Demonstration
+
+Add an animated gif of your program running. You can use ShareX, GIPHY Capture or another tool. https://blog.github.com/2018-06-29-GIF-that-keeps-on-GIFing/
+Note for school project: This is a great way for friends and family to easily see your project in action. 
+The markdown is  \!\[Alt text\]\(relative/path/to/img.png) <br />
+![Sample GIF](docs/octocat_github.gif) 
+
+## Documentation
+
+Create a docs folder in your project. If using Java, generate JavaDoc in your IDE. If using C++, use Doxygen. Change repository settings (using Settings at top of page) to use GitHub Pages with your docs folder. Add a link to the javadoc/doxygen index.html file with this markdown: \[Text to appear]\(URL) <br />
+The URL will be YourGitHubUserName.github.io/YourRepositoryName/foldername/filename<br /> 
+Do not include the docs folder name in your URL. <br />
+Sample: \[JavaDoc]\(https://pv-cop.github.io/PV-README-TEMPLATE/javadoc/index.html) <br /> <br />
+[JavaDoc](https://pv-cop.github.io/PV-README-TEMPLATE/javadoc/index.html)
+
+## Diagrams
+Class Diagram:<br />
+![alt text](Class Diagram.png)<br /> 
+
+
+## Getting Started
+
+Instructions: You may download this project from github.<br /> 
+1.Search for Darian-C on Github <br /> 
+2.Within the repositories download the zip file for the program (ProductionLineTracker). <br /> 
+3.Run the file with all the files required on your computer.<br /> 
+
+## Built With
+* IntelliJ IDEA
+* SceneBuilder
+<br />
+
+## Contributing
+
+Should you wish to contribute to this program, you may download it and add quality functionality to it. You can contact
+me at Dariancolons@gmail.com to discuss more about any collaborations. 
+
+## Author
+
+* Darian Colon
+
+## License
+
+Public repositories on GitHub are often used to share open source software. For your repository to truly be open source, you'll need to license it so that others are free to use, change, and distribute the software. https://help.github.com/articles/licensing-a-repository/ <br />
+You have the option to choose a license when you first create your repository. </br>
+If you need to create a license for an existing repository...
+1. Go to your repository.
+2. Click on "Create new file" Button.
+3. Type the file name as License.txt or License.md in the input box next to your repository name, a drop down button appears towards right side.
+4. Choose the type of license of your choice.
+5. Click "Commit new file" button at the bottom (Green button)
+Credit https://stackoverflow.com/questions/31639059/how-to-add-license-to-an-existing-github-project <br />
+To choose a license, see https://choosealicense.com/ 
+
+## Acknowledgments
+
+* Web sites utilized
+* Classmates who helped
+* Your professor or TA if they helped
+
+## History
+
+Information about what has changed. 
+
+## Key Programming Concepts Utilized
+
+This section would not necessarily be in a real README.  <br />
+It is a reference for you and a place to impress potential employers with your knowledge. 
+Identify what concepts you utilize so when you need to use them again you will know that you will find them here. Include a brief description of the concepts in your own words to help you prepare for related interview questions. 

@@ -1,6 +1,8 @@
 package sample;
 
-/** Allows user to add new products to a table/chart.
+/**
+ * Items on this product line have basic media controls
+ *
  * @author Darian Colon
  */
 public class AudioPlayer extends Product implements MultimediaControl {
@@ -9,7 +11,6 @@ public class AudioPlayer extends Product implements MultimediaControl {
     protected ItemType mediaType;
 
     /**
-     *
      * @param name is the name of the product that is being added to the program(TableView)
      * @param manufacturer is the brand of the product (who makes it)
      * @param Audio
@@ -44,6 +45,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
 
     /**
      * s returns the toString
+     *
      * @return
      */
     public String toString() {

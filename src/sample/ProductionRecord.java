@@ -17,8 +17,8 @@ public class ProductionRecord {
         this.serialNumber = "0";
         this.dateProduced = new Date();
     }
+
     /**
-     *
      * @param pNum
      * @param pID
      * @param sNum
@@ -32,7 +32,6 @@ public class ProductionRecord {
     }
 
     /**
-     *
      * @return
      */
     @Override
