@@ -5,10 +5,10 @@ package sample;
  */
 abstract class Product implements Item {
     //Fields
-    int id;
-    ItemType type;
-    String name;
-    String manufacturer;
+    private int id;
+    private ItemType type;
+    private String name;
+    private String manufacturer;
 
 
     /**

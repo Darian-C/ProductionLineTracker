@@ -1,7 +1,17 @@
 package sample;
 
 //import apple.laf.JRSUIConstants;
-
+import java.io.FileInputStream;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+import java.util.Properties;
+import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,18 +21,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
-import java.io.FileInputStream;
-import java.net.URL;
-import java.sql.*;
-import java.util.Properties;
-import java.util.ResourceBundle;
 
 
 /**
@@ -31,71 +43,63 @@ import java.util.ResourceBundle;
  * @author Darian Colon
  */
 public class Controller implements Initializable {
-    /**
-     * @param Controller
-     * JDBC = Java Database Connectivity
-     * Import Package -> Load and Register JDBC Driver ->
-     * Establish Connection -> Create Statement -> Execute Query ->
-     * Process Result -> Close
+  /**JDBC = Java Database Connectivity.
+     * Import Package -> Load and Register JDBC Driver ->.
+     * Establish Connection -> Create Statement -> Execute Query ->.
+     * Process Result -> Close.
+     * @param Controller controls the majority of the functionality of the program.
      */
-    ObservableList<Product> productLine;
-    @FXML
-    private URL url;
+  Connection connect = null;
+  ObservableList<Product> productLine;
+  @FXML
+  private URL url;
 
-    @FXML
+  @FXML
     private ResourceBundle resources;
 
-    @FXML
+  @FXML
     private ListView<Product> lvProducts;
 
-    @FXML
+  @FXML
     private Button btnAddProduct;
 
-    @FXML
+  @FXML
     private Text outputText;
 
-    @FXML
+  @FXML
     private TextField Name;
 
-    @FXML
+  @FXML
     private TextField Manu;
 
-    @FXML
+  @FXML
     private TableView<Product> Table;
 
-    @FXML
+  @FXML
     private TableColumn<?, ?> nameT;
 
-    @FXML
+  @FXML
     private TableColumn<?, ?> manuT;
 
-    @FXML
+  @FXML
     private TableColumn<?, ?> typeT;
 
-    @FXML
+  @FXML
     private ChoiceBox<ItemType> Choices;
 
-    @FXML
+  @FXML
     private ComboBox<String> Combo;
 
-    @FXML
+  @FXML
     private Button btnRecordProduct;
 
-    @FXML
+  @FXML
     private TextArea prodLog;
 
-    /**
-     * The Above code uses the FXML names for combo box,
-     * choice box, buttons, TableView, etc.
+  /**The Above code uses the FXML names for combo box, choice box, buttons, TableView, etc.
+     * @param
      */
-    public void initializeDB() {
-        String Prod = toString();
-        prodLog.appendText(Prod);
-
-        ItemType pT = Choices.getValue();
-        String pM = Manu.getText();
-        String pN = Name.getText();
-
+  public void connection() {
         try {
             // JDBC driver name and database URL
             final String JDBC_DRIVER = "org.h2.Driver";
@@ -107,9 +111,6 @@ public class Controller implements Initializable {
             final String USER = "";
             final String PASS = prop.getProperty("password");
 
-            Connection connect = null;
-            Statement stmt = null;
-
             try {
                 // STEP 1: Register JDBC driver
                 Class.forName(JDBC_DRIVER);
@@ -119,30 +120,8 @@ public class Controller implements Initializable {
                 connect = DriverManager.getConnection(DB_URL, USER, PASS);
                 System.out.println("Connected!");
 
-                //STEP 3:Statements/Prepared Statement/Calloble Statement
-                System.out.println("Inserting...");
-                stmt = connect.createStatement();
+                //stmt.close();
 
-                //STEP 4:Insert info to table
-                String sql0 = ("INSERT INTO Product" + "(Name, Type, Manufacturer)" + "VALUES (?, ?, ?)");
-                PreparedStatement preparedItem = connect.prepareStatement(sql0);
-                preparedItem.setString(1, pN);
-                preparedItem.setString(2, pT.code);
-                preparedItem.setString(3, pM);
-                preparedItem.executeUpdate();
-                String sqlviewp = "select * From product";
-                ResultSet rs = stmt.executeQuery(sqlviewp);
-                while (rs.next()) {
-                    String Name = rs.getString("Name");
-                    String Type = rs.getString("Type");
-                    String Manufacturer = rs.getString("Manufacturer");
-                    System.out.println(Name + Type + Manufacturer);
-                }
-
-                //STEP 5: close
-                //preparedItem.close();
-                stmt.close();
-                connect.close();
 
 
             } catch (ClassNotFoundException | SQLException e) {
@@ -164,15 +143,67 @@ public class Controller implements Initializable {
     @FXML
     void addProduct(ActionEvent event) {
         Product p = new Widget(Name.getText(), Manu.getText(), Choices.getValue());
-        productLine.add(p);
-    }
+        connection();
 
+        System.out.println("Inserting...");
+
+
+        //STEP 4:Insert info to table
+        String sql0 = ("INSERT INTO Product" + "(Name, Type, Manufacturer)" + "VALUES (?, ?, ?)");
+        PreparedStatement preparedItem = null;
+        try {
+            preparedItem = connect.prepareStatement(sql0);
+
+            preparedItem.setString(1, p.getName());
+            preparedItem.setString(2, p.getType().code);
+            preparedItem.setString(3, p.getManufacturer());
+            preparedItem.executeUpdate();
+
+            preparedItem.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        productLine.clear();
+
+        try {
+            loadProduct();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+//Error needs work Here!!!
     @FXML
     void recordProduct(ActionEvent event) {
         prodLog.appendText(String.valueOf(productLine));
+        System.out.println("Inserting...");
+        connection();
+        ProductionRecord p = new ProductionRecord(0,0,"0", new java.util.Date(System.currentTimeMillis()));
+        //STEP 4:Insert info to table
+        String sql1 = ("INSERT INTO PRODUCTIONRECORD" + "(PRODUCTION_NUM, PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)"
+                + "VALUES (?, ?, ?, ?)");
+        PreparedStatement preparedItem = null;
+        try {
+            preparedItem = connect.prepareStatement(sql1);
+
+            preparedItem.setInt(1, p.getProductionNumber());
+            preparedItem.setInt(2, p.getProductID());
+            preparedItem.setString(3, p.getSerialNumber());
+            //preparedItem.setDate(4,p.getProdDate());
+            preparedItem.executeUpdate();
+
+            preparedItem.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            loadProduct();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
-
     /**
      * @param location
      * @param resources The below code populates combo box with values 1-10.
@@ -193,9 +224,40 @@ public class Controller implements Initializable {
         Table.setItems(productLine);
 
         lvProducts.setItems(productLine);
+
+        try {
+            loadProduct();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
-
+    public void loadProduct() throws SQLException {
+        connection();
+        Statement stmt = null;
+        stmt = connect.createStatement();
+        String sqlviewp = "select * From PRODUCT";
+        ResultSet rs = stmt.executeQuery(sqlviewp);
+        while (rs.next()) {
+           String Name = rs.getString("Name");
+           String Type = rs.getString("Type");
+           String Manufacturer = rs.getString("Manufacturer");
+           ItemType t = ItemType.AUDIO;
+            if(Type.equals("AU")){
+                t = ItemType.AUDIO;
+            }
+            if(Type.equals("VI")){
+                t = ItemType.VISUAL;
+            }
+            if(Type.equals("AM")){
+                t = ItemType.AUDIO_MOBILE;
+            }
+            if(Type.equals("VM")){
+                t = ItemType.VISUAL_MOBILE;
+            }
+           Product q = new Widget(Name, Manufacturer, t);
+           productLine.add(q);
+        }
+    }
 }
 
 

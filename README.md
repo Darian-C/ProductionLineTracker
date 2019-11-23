@@ -49,6 +49,7 @@ me at Dariancolons@gmail.com to discuss more about any collaborations.
 
 ## License
 
+This project is licensed under the GNU General Public License v3.0.<br />
 
 ## Acknowledgments
 
@@ -62,3 +63,4 @@ Most recent version of the project NOV 21, 2019.
 
 ## Key Programming Concepts Utilized
 
+~~~~

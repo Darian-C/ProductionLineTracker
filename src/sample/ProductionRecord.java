@@ -1,5 +1,7 @@
 package sample;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -11,7 +13,9 @@ public class ProductionRecord {
     private String serialNumber;
     Date dateProduced = new Date();
 
-    ProductionRecord(int pNum) {
+
+
+    public ProductionRecord(int pNum) {
         this.productionNumber = pNum;
         this.productID = 0;
         this.serialNumber = "0";
@@ -24,7 +28,7 @@ public class ProductionRecord {
      * @param sNum
      * @param dateProduced
      */
-    ProductionRecord(int pNum, int pID, String sNum, Date dateProduced) {
+    public ProductionRecord(int pNum, int pID, String sNum, Date dateProduced) {
         this.productionNumber = pNum;
         this.productID = pID;
         this.serialNumber = sNum;
@@ -56,7 +60,7 @@ public class ProductionRecord {
         this.serialNumber = sNum;
     }
 
-    public void setProdDate(Date dateProduced) {
+    private void setProdDate(Date dateProduced) {
 
         this.dateProduced = dateProduced;
     }
