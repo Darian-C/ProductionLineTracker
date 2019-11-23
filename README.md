@@ -18,7 +18,7 @@ The markdown is  \!\[Alt text\]\(relative/path/to/img.png) <br />
 
 ## Diagrams
 Class Diagram:<br />
-![alt text](Class Diagram.png)<br /> 
+![Alt text](./Documents/Class Diagram.png)<br /> 
 
 
 ## Getting Started
