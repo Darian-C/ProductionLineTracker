@@ -1,15 +1,16 @@
 package sample;
 
-/**
+/**This part of the program.
  * @author Darian Colon
  */
 public interface ScreenSpec {
-    /**
-     * @return
-     */
-    public String getResolution();
+  /**
+   * The return .
+   * @return
+   */
+  public String getResolution();
 
-    public int getRefreshRate();
+  public int getRefreshRate();
 
-    public int getResponseTime();
+  public int getResponseTime();
 }

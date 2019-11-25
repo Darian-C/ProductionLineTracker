@@ -2,7 +2,7 @@ package sample;
 
 import java.util.ArrayList;
 
-/**
+/**This part of the program.
  * @author Darian Colon
  */
 public interface MultimediaControl {

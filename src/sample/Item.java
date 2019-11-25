@@ -2,7 +2,7 @@ package sample;
 
 import java.lang.*;
 
-/**
+/** The interface item is implemented by the Product class.
  * @author Darian Colon
  */
 public interface Item {

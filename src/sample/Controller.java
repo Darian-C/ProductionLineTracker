@@ -100,42 +100,39 @@ public class Controller implements Initializable {
      * @param
      */
   public void connection() {
-        try {
-            // JDBC driver name and database URL
-            final String JDBC_DRIVER = "org.h2.Driver";
-            final String DB_URL = "jdbc:h2:./res/H2";
+    try {
+      // JDBC driver name and database URL
+      final String JDBC_DRIVER = "org.h2.Driver";
+      final String DB_URL = "jdbc:h2:./res/H2";
 
-            Properties prop = new Properties();
-            prop.load(new FileInputStream("res/properties"));
+      Properties prop = new Properties();
+      prop.load(new FileInputStream("res/properties"));
 
-            final String USER = "";
-            final String PASS = prop.getProperty("password");
+      final String USER = "";
+      final String PASS = prop.getProperty("password");
 
-            try {
-                // STEP 1: Register JDBC driver
-                Class.forName(JDBC_DRIVER);
+      try {
+        // STEP 1: Register JDBC driver
+        Class.forName(JDBC_DRIVER);
+        //STEP 2: Open a connection to database
+        System.out.println("Connecting to database....");
+        connect = DriverManager.getConnection(DB_URL, USER, PASS);
+        System.out.println("Connected!");
 
-                //STEP 2: Open a connection to database
-                System.out.println("Connecting to database....");
-                connect = DriverManager.getConnection(DB_URL, USER, PASS);
-                System.out.println("Connected!");
-
-                //stmt.close();
-
+        //stmt.close();
 
 
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+      } catch (ClassNotFoundException | SQLException e) {
+        e.printStackTrace();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
 
-    /**
-     * The below code takes the name, manufacturer, and ItemType
-     * from the choice box that the user inputs and adds it to the
-     * tableview on the product tab
+    /**The below code takes the name, manufacturer, and ItemType from the choice box
+     * that the user inputs and adds it to the tableview on the product tab.
      *
      * @param event
      */

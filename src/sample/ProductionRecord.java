@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
+/**This part of the program.
  * @author Darian Colon
  */
 public class ProductionRecord {

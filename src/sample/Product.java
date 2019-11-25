@@ -1,6 +1,6 @@
 package sample;
 
-/**
+/**This part of the program.
  * @author Darian Colon
  */
 abstract class Product implements Item {
