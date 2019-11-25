@@ -3,15 +3,13 @@ package sample;
 //import apple.laf.JRSUIConstants;
 import java.io.FileInputStream;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Date;
+import java.sql.*;
+import java.sql.Date;
+import java.util.IdentityHashMap;
 import java.util.Properties;
 import java.util.ResourceBundle;
+
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -145,7 +143,7 @@ public class Controller implements Initializable {
         System.out.println("Inserting...");
 
 
-        //STEP 4:Insert info to table
+        //Insert info to table
         String sql0 = ("INSERT INTO Product" + "(Name, Type, Manufacturer)" + "VALUES (?, ?, ?)");
         PreparedStatement preparedItem = null;
         try {
@@ -171,32 +169,29 @@ public class Controller implements Initializable {
 
 
     }
-//Error needs work Here!!!
+    //Error needs work Here!!!
     @FXML
     void recordProduct(ActionEvent event) {
         prodLog.appendText(String.valueOf(productLine));
         System.out.println("Inserting...");
         connection();
-        ProductionRecord p = new ProductionRecord(0,0,"0", new java.util.Date(System.currentTimeMillis()));
+
+        Product sp = lvProducts.getSelectionModel().getSelectedItem();
+        ProductionRecord p = new ProductionRecord(0,sp.getId(),"0", new java.util.Date(System.currentTimeMillis()));
+        Timestamp ts = new Timestamp(p.getProdDate().getTime());
         //STEP 4:Insert info to table
-        String sql1 = ("INSERT INTO PRODUCTIONRECORD" + "(PRODUCTION_NUM, PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)"
-                + "VALUES (?, ?, ?, ?)");
+        String sql1 = ("INSERT INTO PRODUCTIONRECORD" + "(PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)"
+                + "VALUES (?, ?, ?)");
         PreparedStatement preparedItem = null;
         try {
             preparedItem = connect.prepareStatement(sql1);
 
-            preparedItem.setInt(1, p.getProductionNumber());
-            preparedItem.setInt(2, p.getProductID());
-            preparedItem.setString(3, p.getSerialNumber());
-            //preparedItem.setDate(4,p.getProdDate());
+            preparedItem.setInt(1, p.getProductID());
+            preparedItem.setString(2, p.getSerialNumber());
+            preparedItem.setTimestamp(3,ts);
             preparedItem.executeUpdate();
 
             preparedItem.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            loadProduct();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -235,6 +230,7 @@ public class Controller implements Initializable {
         String sqlviewp = "select * From PRODUCT";
         ResultSet rs = stmt.executeQuery(sqlviewp);
         while (rs.next()) {
+           String Id = rs.getString("ID");
            String Name = rs.getString("Name");
            String Type = rs.getString("Type");
            String Manufacturer = rs.getString("Manufacturer");

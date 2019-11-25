@@ -2,11 +2,12 @@ package sample;
 
 import java.lang.*;
 
-/** The interface item is implemented by the Product class.
+/**
+ * The interface item is implemented by the Product class.
  * @author Darian Colon
  */
 public interface Item {
-    //a method getId that would return an int
+    //A method getId that would return an int
     int getId();
 
     //A method setName that would have one String parameter
