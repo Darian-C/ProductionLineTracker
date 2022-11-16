@@ -2,61 +2,49 @@ package sample;
 
 import java.util.ArrayList;
 
-/**This part of the program.
- * @author Darian Colon
- */
 public class MoviePlayer extends Product implements MultimediaControl {
-    private MonitorType monitorType;
+
     private Screen screen;
-    protected ItemType mediaType;
+    private MonitorType monitorType;
 
-    /**
-     * @param name
-     * @param manufacturer
-     * @param screen
-     * @param t
-     */
+    public Screen getScreen() {
+        return screen;
+    }
 
-    public MoviePlayer(String name, String manufacturer, Screen screen, MonitorType t) {
-        super(name, manufacturer);
+    public MonitorType getMonitorType() {
+        return monitorType;
+    }
 
-        screen = new Screen("1024x768", 60, 10);
-
-        monitorType = MonitorType.LCD;
-
-        this.screen = screen;
-
-        this.monitorType = t;
-
-        mediaType = ItemType.VISUAL;
+    MoviePlayer(String n, String man, Screen s, MonitorType mon) {
+        super(n, man, ItemType.VISUAL);
+        screen = s;
+        monitorType = mon;
     }
 
     @Override
     public void play() {
-        System.out.println("Playing");
+        System.out.println("Playing movie");
     }
 
     @Override
     public void stop() {
-        System.out.println("Stopped");
+        System.out.println("Stopping movie");
     }
 
     @Override
     public void previous() {
-        System.out.println("Previous");
+        System.out.println("Previous movie");
     }
 
     @Override
     public void next() {
-        System.out.println("Next");
+        System.out.println("Next movie");
     }
 
-    /**
-     * @return
-     */
+    @Override
     public String toString() {
-        return super.toString() + "\n" + screen.toString() + "\n" +
-                "Monitor Type: " + monitorType;
+        return super.toString() + "\r\n"
+                + "Screen: \n" + screen + "\r\n"
+                + "Monitor Type: " + monitorType;
     }
-
 }

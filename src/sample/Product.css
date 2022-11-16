@@ -1,5 +1,5 @@
 /*noinspection CssUnusedSymbol*/
 .button {
-    -fx-background-color: red;
-    -fx-text-fill: white;
+    -fx-background-color: grey;
+    -fx-text-fill: Black;
 }

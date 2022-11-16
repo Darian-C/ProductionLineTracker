@@ -118,7 +118,7 @@ public class ProductionTabsController {
 
     private void initializeDatabase() {
         final String jdbcDriver = "org.h2.Driver";
-        final String dbUrl = "jdbc:h2:./res/ProdDB";
+        final String dbUrl = "jdbc:h2:./res/H2";
 
         Properties prop = new Properties();
         String pass = "";

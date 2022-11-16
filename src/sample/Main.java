@@ -8,17 +8,13 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-  /**This part of the program creates the main scene of the program.
-     * @author Darian Colon
-     * @param primaryStage this is the main scene of the program.
-     * @throws Exception this is used, should and error arise.
-     */
 
   @Override
     public void start(Stage primaryStage) throws Exception {
+    setUserAgentStylesheet(STYLESHEET_CASPIAN);
     Parent root = FXMLLoader.load(getClass().getResource("ProductLayout.fxml"));
     primaryStage.setTitle("Production Line Tracker");
-    primaryStage.setScene(new Scene(root, 600, 400));
+    primaryStage.setScene(new Scene(root, 600, 600));
     primaryStage.show();
 
   }
