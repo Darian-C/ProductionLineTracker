@@ -6,84 +6,73 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**This part of the program.
- * @author Darian Colon
- */
 public class ProductionRecord {
-    private int productionNumber;
+
+    private int productionNum;
     private int productID;
-    private String serialNumber;
-    Date dateProduced = new Date();
+    private String serialNum;
+    private Date prodDate;
 
-
-
-    public ProductionRecord(int pNum) {
-        this.productionNumber = pNum;
-        this.productID = 0;
-        this.serialNumber = "0";
-        this.dateProduced = new Date();
+    public Date getProdDate() {
+        return new Date(prodDate.getTime());
     }
 
-    /**
-     * @param pNum
-     * @param pID
-     * @param sNum
-     * @param dateProduced
-     */
-    public ProductionRecord(int pNum, int pID, String sNum, Date dateProduced) {
-        this.productionNumber = pNum;
-        this.productID = pID;
-        this.serialNumber = sNum;
-        this.dateProduced = dateProduced;
+    public void setProdDate(Date prodDate) {
+        this.prodDate = new Date(prodDate.getTime());
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public String toString() {
-        return "Prod. Num: " + productionNumber
-                + " Product ID: " + productID + " Serial Num: "
-                + serialNumber + " Date: " + dateProduced;
+    public int getProductionNum() {
+        return productionNum;
     }
 
-    public void setProductionNumber(int pNum) {
-
-        this.productionNumber = pNum;
-    }
-
-    public void setProductID(int pID) {
-
-        this.productID = pID;
-    }
-
-    public void setSerialNumber(String sNum) {
-
-        this.serialNumber = sNum;
-    }
-
-    private void setProdDate(Date dateProduced) {
-
-        this.dateProduced = dateProduced;
-    }
-
-    public int getProductionNumber() {
-
-        return this.productionNumber;
+    public void setProductionNum(int productionNum) {
+        this.productionNum = productionNum;
     }
 
     public int getProductID() {
-
-        return this.productID;
+        return productID;
     }
 
-    public String getSerialNumber() {
-
-        return this.serialNumber;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
-    public Date getProdDate() {
+    public String getSerialNum() {
+        return serialNum;
+    }
 
-        return dateProduced;
+    public void setSerialNum(String serialNum) {
+        this.serialNum = serialNum;
+    }
+
+
+    public ProductionRecord(int productID) {
+        this.productionNum = 0;
+        this.productID = productID;
+        serialNum = "0";
+        prodDate = new Date();
+    }
+
+
+    public ProductionRecord(Product product, int typeCount) {
+        this.productionNum = 0;
+        this.productID = product.getId();
+
+        serialNum = product.getManufacturer().substring(0, 3) + product.getType().code
+                + String.format("%05d", typeCount);
+        prodDate = new Date();
+    }
+
+
+    public ProductionRecord(int prodNum, int productID, String sn, Date date) {
+        this.productionNum = prodNum;
+        this.productID = productID;
+        serialNum = sn;
+        prodDate = new Date(date.getTime());
+    }
+
+    public String toString() {
+        return "Prod. Num: " + productionNum + " Product ID: " + productID + " Serial Num: "
+                + serialNum + " Date: " + prodDate;
     }
 }

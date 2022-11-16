@@ -1,77 +1,94 @@
 package sample;
 
-/**This part of the program.
- * @author Darian Colon
- */
-abstract class Product implements Item {
-    //Fields
+import java.util.List;
+
+public abstract class Product implements Item, Comparable<Product> {
+
     private int id;
-    private ItemType type;
     private String name;
+    private ItemType type;
     private String manufacturer;
 
-
-    /**
-     * @param name
-     * @param manufacturer
-     * @param type
-     */
-    public Product(String name, String manufacturer, ItemType type) {
+    public Product(int id, String n, String m, ItemType type) {
         this.id = id;
+        name = n;
         this.type = type;
-        this.name = name;
-        this.manufacturer = manufacturer;
+        manufacturer = m;
     }
 
-    public Product(String name, String manufacturer) {
-        this.manufacturer = manufacturer;
-        this.name = name;
 
+    public Product(String n, String m, ItemType type) {
+        this.id = 0;
+        name = n;
+        this.type = type;
+        manufacturer = m;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setType(ItemType type) {
-        this.type = type;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public ItemType getType() {
-        return this.type;
-    }
-
-    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    @Override
+    public ItemType getType() {
+        return type;
+    }
+
+    public void setType(ItemType type) {
+        this.type = type;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
 
-    @Override
-    public String getManufacturer() {
-        return this.manufacturer;
+
+    public String toString() {
+        return "Name: " + name + "\n"
+                + "Manufacturer: " + manufacturer + "\n"
+                + "Type: " + type;
     }
 
 
-    /**
-     * @return
-     */
     @Override
-    public String toString() {
-        String s = "ID: " + id + "Name: " + name + "\n" +
-                "Manufacturer: " + manufacturer + "\n" + "Type: " + type;
-        return s;
+    public int compareTo(Product o) {
+        return name.compareTo(o.getName());
+    }
+
+
+    public static void printType(List<? extends Product> list, Class<?> cls) {
+        for (Product listItem : list) {
+            if (listItem.getClass().equals(cls)) {
+                System.out.println(listItem);
+            }
+        }
     }
 }
 
 
+class Widget extends Product {
 
+
+    public Widget(int id, String name, String manufacturer, ItemType type) {
+        super(id, name, manufacturer, type);
+    }
+
+
+    public Widget(String name, String manufacturer, ItemType type) {
+        super(name, manufacturer, type);
+    }
+}
