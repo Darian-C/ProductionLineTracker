@@ -11,7 +11,7 @@ public class Main extends Application {
   /**This part of the program creates the main scene of the program.
      * @author Darian Colon
      * @param primaryStage this is the main scene of the program.
-     * @throws Exception this is uses, should and error arise.
+     * @throws Exception this is used, should and error arise.
      */
 
   @Override
