@@ -24,7 +24,7 @@ class Employee {
     }
 
     private boolean isValidPassword(String password) {
-        // must contain uppercase, lowercase, and special
+
         int lowerCount = 0;
         int upperCount = 0;
         int specialCount = 0;
@@ -36,7 +36,7 @@ class Employee {
             } else if (password.substring(i, i + 1).matches("[^A-Za-z0-9]")) {
                 specialCount++;
             }
-        } //endfor
+        }
         if (lowerCount > 0 && upperCount > 0 && specialCount > 0) {
             return true;
         } else {
